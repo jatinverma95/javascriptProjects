@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body id="thebody" >
+
+
+        <button onclick="timer=setInterval(poschange, 50)">START!!</button>
+        <button onclick="clearInterval(timer)" >STOP!</button><br><br>
+        <img src="highfive.jpg" id="imaze" style="position:absolute; left:100px " height="50px" width="50px" >
+
+        <script>
+
+            var timer, img, xpos=0;
+
+            function poschange(){
+                img=document.getElementById("imaze");
+                xpos=xpos+5;
+
+
+                img.style.left=xpos + 'px';
+            }
+        </script> 
+    </body>
+</html>

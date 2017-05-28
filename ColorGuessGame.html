@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body onload="do_game()">
+
+        <p id="demo"></p>
+        <script>
+            var color=["blue","cyan","gold","gray","green","magenta","orange","red","white","yellow"];
+
+            function do_game(){
+                var finished=false;
+                var count=0;
+                var target=color[Math.floor(Math.random()*color.length)];   
+                while(!finished){
+                    var sugg=prompt("I am thinking of one of these colors:\n blue, cyan, gold gray, green, magenta, orange, red, white , yellow\n\n what color i am thinking of?");
+                    count++;
+                    finished=do_check(sugg, target, count);
+                }
+            }
+
+            function do_check( abc,  target,  count){
+                var ans=false;
+                for(var i=0; i<color.length; i++){
+                    if(abc==color[i])
+                    {ans=true;
+                     break;   
+
+                    }
+                    else{ans=false;
+                        }
+                }
+                if(!ans){
+                    alert("Sorry, i didn't recognise your color.\n Please try again.");
+                    return false;   
+                }
+                if(abc<target){
+                    alert("Sorry, Your guess is not correct!\n Hint:Your color is alphabatically lower than mine\nPlease try again.") ;
+                    return false;        
+                }else if(abc>target){
+                    alert("Sorry, Your guess is not correct!\n Hint:Your color is alphabatically higher than mine\nPlease try again.") ;
+                    return false;
+                }else{
+                    alert("You have guessed the color!\n It took you"+count+" guesses to finish this game");
+                    document.body.style.backgroundColor=abc;
+                    return true;
+
+                }
+
+
+            }
+
+        </script> 
+    </body>
+</html>

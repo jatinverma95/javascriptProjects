@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Matching Game</title>
+        <style>
+            #leftSide{ 
+                 position: relative;
+                width:500px; 
+                height: 500px;
+                float: left;  
+               
+            }
+            #rightSide { 
+                  
+
+                width:500px; 
+                height:500px; 
+                left: 500px; 
+                position: absolute;     
+                border-left: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <h1> MATCHING GAME </h1>
+
+
+        <p>
+            Click on the extra smiling face on left side.
+        </p>
+
+        <div id="leftSide">
+
+        </div>
+
+
+        <div id="rightSide"></div>
+
+        <script>
+            var numberOfFaces=5;
+            var score=0;
+            var leftSide=document.getElementById("leftSide");
+            window.onload=generateFaces;
+            function generateFaces(){
+                for(var i =0; i<numberOfFaces; i++){
+                    var x= document.createElement("img");
+                    x.setAttribute("src", "smile.png");
+                    x.style.display='';
+                    x.style.position='absolute';
+                    x.style.top=Math.floor(Math.random()*400)+'px';
+                    x.style.left=Math.floor(Math.random()*400) +'px';
+                    var y=document.getElementById("leftSide");
+                    y.appendChild(x);
+
+
+                }
+                
+                var rightSide=document.getElementById("rightSide");
+                var leftSideImages=leftSide.cloneNode(true);
+                leftSideImages.removeChild(leftSideImages.lastChild);
+                rightSide.appendChild(leftSideImages);
+                
+                var theBody=document.getElementsByTagName("body")[0];
+                
+                leftSide.lastChild.onclick=function nextlevel(event){
+                    event.stopPropagation();
+                    
+                    numberOfFaces+=5;
+                    score+=1;
+                    
+                    while(leftSide.firstChild ){
+                        leftSide.removeChild(leftSide.firstChild);
+                        
+                    }
+                    
+                     while(rightSide.firstChild ){
+                        rightSide.removeChild(rightSide.firstChild);
+                        }
+                    
+                    generateFaces();
+                }
+                
+                theBody.onclick=function(){
+                    
+                    alert("GAME OVER!!\n Your SCORE:"+score);   
+                    
+                    theBody.onclick=null;
+                    leftSide.onclick=null;
+                }
+                
+            }
+
+
+        </script>
+    </body>
+</html>
